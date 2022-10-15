@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dbp>
+    <estudiante ides="1"> 
+        <cedula genero="masculino" matriculado="si" id="6843" esvalida="si">1104128887</cedula>
+        <nombre>Máximo</nombre>
+        <apellido>Álvarez</apellido>
+        <celular>0968413887</celular>  
+        <titulo>Ingeniero en Sistemas</titulo>
+        <asignatura>Desarrollo de Software en Ambientes Cloud</asignatura>
+        <ciudad>Loja</ciudad>
+        <programa-posgrado>Maestría de Ingeniería de Software</programa-posgrado>
+        <fecha>15 de octubre de 2022</fecha>
+    </estudiante>
+</dbp>

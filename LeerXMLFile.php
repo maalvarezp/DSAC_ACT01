@@ -33,9 +33,9 @@
 		} else {
 			exit('No se puede abrir XML');
 		}
-	  
+	  	$xml = simplexml_load_file('Estudiantes.xml');
 			//cargar en la tabla
-			foreach ($arrayEstudiantes as $key => $value) {
+			foreach ($xml->xpath('estudiante'); as $key => $values) {
 				echo '<tr>';   
 				echo "<td> $key </td>";
 				echo '<td>'.$value.'</td>';

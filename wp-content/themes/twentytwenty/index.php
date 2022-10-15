@@ -113,28 +113,82 @@ get_header();
 
 </main><!-- #site-content -->
 <hr>
-<div style="text-align:center">
+<div style="text-align:center; width:80%; margin:auto">
 <?php
-$useragent = $_SERVER['HTTP_USER_AGENT'];
-$otros = '';
-if (preg_match("/Edg/i", $useragent)){
-echo "Estás navegando desde <b>EDGE</b>";
-}elseif (preg_match("/KHTML like Gecko/i", $useragent) || preg_match("/Safari/i",
-$useragent)){
-echo "Estás navegando desde <b>CHROME</b>";
-}else if (preg_match("/20100101/i", $useragent)) {
-echo "Estás navegando desde <b>FIREFOX</b>";
-}elseif (preg_match("/OPR/i", $useragent)) {
-echo "Estás navegando desde <b>OPERA</b>";
-}elseif (preg_match("/Mobile/i", $useragent)) {
-echo "Estás navegando desde <b>SAFAR</b>I";
-}else {
-echo "Estás navegando desde <b>OTRO NAVEGADOR</b>";
+	$useragent = $_SERVER['HTTP_USER_AGENT'];
+	$otros = '';
+	if (preg_match("/Edg/i", $useragent)){
+	echo "Estás navegando desde <b>EDGE</b>";
+	}elseif (preg_match("/KHTML like Gecko/i", $useragent) || preg_match("/Safari/i",
+	$useragent)){
+	echo "Estás navegando desde <b>CHROME</b>";
+	}else if (preg_match("/20100101/i", $useragent)) {
+	echo "Estás navegando desde <b>FIREFOX</b>";
+	}elseif (preg_match("/OPR/i", $useragent)) {
+	echo "Estás navegando desde <b>OPERA</b>";
+	}elseif (preg_match("/Mobile/i", $useragent)) {
+	echo "Estás navegando desde <b>SAFAR</b>I";
+	}else {
+	echo "Estás navegando desde <b>OTRO NAVEGADOR</b>";
+	}
+
+	echo " <br><b>STATUS CODE</b> <br>";
+	echo $_SERVER['REDIRECT_STATUS'];
+
+	echo " <br><b>SERVIDOR</b> <br>";
+	echo $_SERVER['SERVER_SOFTWARE'];
+
+	echo " <br><b>SERVER_PORT</b> <br>";
+	echo $_SERVER['SERVER_PORT'];
+
+	echo " <br><b>HTTP_HOST</b> <br>";
+	echo $_SERVER['HTTP_HOST'];
+
+	?>
+	<?php
+
+$userA= $_SERVER['HTTP_USER_AGENT'];
+print("<br><br>Navegador:".$userA);
+
+if (preg_match("/Firefox/i", $userA)) {
+	echo "<br><h3>Te encuentras navegando con Firefox</h3>";
+} else {
+	echo "<br><h3>Estas navegando en otro navaegador diferente Firefox.</h3>";
 }
 
-echo "<b>STATUS</b>": $_SERVER['REDIRECT_STATUS']; 
-?>
+		//Probar estudiantes para colocar en formato tabla.
+$arrayEstudiantes = array('Javier','Pedro','Ricardo','Ana','Edy','Cecilia','Roberth');
 
+print("<h1 align='center'>Listado de Estudiantes DSwAC</h1>");
+echo('<table align="center" border=1 style="background:yellow">');
+echo '<tr>';   
+echo '<th>Dato</th>';
+echo '<th>Detalle</th>';
+echo '</tr>'; 
+
+if (file_exists('Estudiantes.xml')) {
+	$xml = simplexml_load_file('Estudiantes.xml');
+	print_r($xml);
+		
+	print("<br><br>Probando con foreach<br>");
+
+	foreach ($xml->estudiante as $key => $estud) {
+					echo "Estudiante: ".$estud->apellido." con cedula :".$estud->cedula ."<br>";    
+			}
+
+} else {
+	exit('No se puede abrir XML');
+}
+
+	$xml = simplexml_load_file('Estudiantes.xml');
+	foreach ($xml->estudiante->children() as $key => $value) {
+		echo '<tr>';
+		echo "<td> $key </td>";
+		echo '<td>'.$value.'</td>';
+		echo '</tr>';
+	}
+	echo '</table>';
+?>
 </div>
 <hr>
 
